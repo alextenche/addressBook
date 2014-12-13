@@ -25,3 +25,13 @@ ul li{
 .button-group a{
 	margin: auto;
 }
+
+#loaderImage{
+	display: none;
+	position: absolute;
+	top: 120px;
+	left: 50%;
+	width: 100px;
+	/* z-index: 100%; */
+	margin: 50px auto 50px auto;
+}

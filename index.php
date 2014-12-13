@@ -19,30 +19,30 @@
         <a class="add-btn button right small" data-reveal-id="myModal" href="#">adaugă un contact</a>
         <div id="myModal" class="reveal-modal" data-reveal>
           <h2>ad Contact</h2>
-          <form>
+          <form id="addContact" action="#" method="post">
 
             <div class="row">
               <div class="large-6 columns">
-                <label>prenume<input type="text" placeholder="adaugă prenumele" /></label>
+                <label>prenume<input name="first_name" type="text" placeholder="adaugă prenumele" /></label>
               </div>
 
               <div class="large-6 columns">
-                <label>nume<input type="text" placeholder="adaugă numele" /></label>
+                <label>nume<input name="last_name" type="text" placeholder="adaugă numele" /></label>
               </div>
             </div>
 
             <div class="row">
               <div class="large-4 columns">
-                <label>email<input type="email" placeholder="adaugă adresa de email" /></label>
+                <label>email<input name="email" type="email" placeholder="adaugă adresa de email" /></label>
               </div>
 
               <div class="large-4 columns">
-                <label>telefon<input type="text" placeholder="adaugă telefonul" /></label>
+                <label>telefon<input name="phone" type="text" placeholder="adaugă telefonul" /></label>
               </div>
 
               <div class="large-4 columns">
                 <label>Contact Group
-                	<select>
+                	<select name="contact_group">
                 		<option value="husker">Family</option>
                 		<option value="starbuck">Friends</option>
                 		<option value="hotdog">Business</option>
@@ -53,11 +53,11 @@
 
             <div class="row">
               <div class="large-6 columns">
-                <label>prima adresă<input type="text" placeholder="adăugați prima adresă" /></label>
+                <label>prima adresă<input name="address1" type="text" placeholder="adăugați prima adresă" /></label>
               </div>
 
               <div class="large-6 columns">
-                <label>Address 2<input type="text" placeholder="Introduceti Adresa 2" /></label>
+                <label>Address 2<input name="address2" type="text" placeholder="Introduceti Adresa 2" /></label>
               </div>
             </div>
 
@@ -94,66 +94,18 @@
         </div>
         </div>
 
-        <div class="row">
-        	<div class="large-12 columns">
-        		<table>
-        			<thead>
-        				<tr>
-        					<th width="200">Name</th>
-        					<th width="130">Phone</th>
-        					<th width="200">Email</th>
-        					<th width="250">Address</th>
-        					<th width="250">Group</th>
-        					<th width="250">Action</th>
-        				</tr>
-        			</thead>
-        			<tbody>
-        				<tr>
-        					<td><a href="contact.html">Keanu Reeves</a></td>
-        					<td>1234567</td>
-        					<td>keanu@gmail.ro</td>
-        					<td>
-        						<ul>
-        							<li>55 Main Street</li>
-        							<li>Amensbury, MA 01913</li>
-        						</ul>
-        					</td>
-        					<td>Family</td>
-        					<td>
-        						<ul class="button-group radius">
-        							<li><a href="#" class="button tiny" data-reveal-id="myModal">Edit</a></li>
-        							<li><a href="#" class="button tiny [secondary alert success]">Delete</a></li>
-        						</ul>
-        					</td>
-        				</tr>
+        <!-- loader image -->
+        <div id="loaderImage">
+          <img src="img/ajax-loader.gif">
+        </div>
 
-        				<tr>
-        					<td><a href="contact.html">Keanu Reeves2</a></td>
-        					<td>1234567</td>
-        					<td>keanu@gmail.ro</td>
-        					<td>
-        						<ul>
-        							<li>55 Main Street</li>
-        							<li>Amensbury, MA 01913</li>
-        						</ul>
-        					</td>
-        					<td>Family</td>
-        					<td>
-        						<ul class="button-group radius">
-        							<li><a href="#" class="button tiny" data-reveal-id="myModal">Edit</a></li>
-        							<li><a href="#" class="button tiny alert">Delete</a></li>
-        						</ul>
-        					</td>
-        				</tr>
-        			</tbody>
-				</table>
-      		</div>
-    	</div>
+        <!-- main content -->
+        <div id="pageContent"></div>
     
 
     
-    <script src="js/vendor/jquery.js"></script>
-	<script src="js/script.js"></script>
+      <script src="js/vendor/jquery.js"></script>
+	     <script src="js/script.js"></script>
     <script src="js/foundation.min.js"></script>
     <script>
       $(document).foundation();

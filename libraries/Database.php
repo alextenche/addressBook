@@ -1,9 +1,9 @@
 <?php
-class Databse {
+class Database {
 	private $host = DB_HOST;
 	private $user = DB_USER;
 	private $pass = DB_PASS;
-	private $name = DB_NAME;
+	private $dbname = DB_NAME;
 
 	private $dbh;
 	private $error;
@@ -12,7 +12,7 @@ class Databse {
 
 	public function __construct(){
 		// set DSN
-		$dsn = 'mysql:host'.$this->host.';dbname='.$this->dbname;
+		$dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname;
 		// set options
 		$options = array(PDO::ATTR_PERSISTENT => true,
 						 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
