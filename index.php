@@ -1,3 +1,4 @@
+<?php include('core/init.php');?>
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -43,9 +44,9 @@
               <div class="large-4 columns">
                 <label>Contact Group
                 	<select name="contact_group">
-                		<option value="husker">Family</option>
-                		<option value="starbuck">Friends</option>
-                		<option value="hotdog">Business</option>
+                		<option value="Family">Family</option>
+                		<option value="Friends">Friends</option>
+                		<option value="Business">Business</option>
                 	</select>
                 </label>
               </div>
@@ -69,11 +70,11 @@
 			<div class="large-4 columns">
                 <label>Judet
                 	<select name="state">
-                		<option value="husker">Arad</option>
-                		<option value="husker">Timis</option>
-                		<option value="starbuck">CarasSeverin</option>
-                		<option value="hotdog">Hunedoara</option>
-                	</select>
+						<option>Select State</option>
+						<?php foreach($states as $key => $value) :?>
+							<option value="<?php echo $key;?>"><?php echo $value;?></option>
+						<?php endforeach; ?>
+					</select>
                 </label>
               </div>
 
