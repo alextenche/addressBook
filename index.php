@@ -16,9 +16,9 @@
       </div>
 
       <div class="large-6 columns">
-        <a class="add-btn button right small" data-reveal-id="myModal" href="#">adaugă un contact</a>
-        <div id="myModal" class="reveal-modal" data-reveal>
-          <h2>ad Contact</h2>
+        <a class="add-btn button right small" data-reveal-id="addModal" href="#">adaugă un contact</a>
+        <div id="addModal" class="reveal-modal" data-reveal>
+          <h2>Add Contact</h2>
           <form id="addContact" action="#" method="post">
 
             <div class="row">
@@ -63,12 +63,12 @@
 
             <div class="row">
               <div class="large-4 columns">
-                <label>Orasul<input type="text" placeholder="introduceti orasul" /></label>
+                <label>Orasul<input name="city" type="text" placeholder="introduceti orasul" /></label>
               </div>
 
 			<div class="large-4 columns">
                 <label>Judet
-                	<select>
+                	<select name="state">
                 		<option value="husker">Arad</option>
                 		<option value="husker">Timis</option>
                 		<option value="starbuck">CarasSeverin</option>
@@ -78,16 +78,16 @@
               </div>
 
               <div class="large-4 columns">
-                <label>Cod Postal<input type="text" placeholder="introduceti codul postal" /></label>
+                <label>Cod Postal<input name="zipcode" type="text" placeholder="introduceti codul postal" /></label>
               </div>
             </div>
 
             <div class="row">
               <div class="large-12 columns">
-                <label>Notite<textarea placeholder="Introduceti notite daca este nevoie"></textarea></label>
+                <label>Notite<textarea name="notes" placeholder="Introduceti notite daca este nevoie"></textarea></label>
               </div>
              </div>
-             <input type="submit" class="add-btn button right small" value="Submit">
+             <input name="submit" type="submit" class="add-btn button right small" value="Submit">
              <a class="close-reveal-modal" href="">&#215;</a>
           </form>
 

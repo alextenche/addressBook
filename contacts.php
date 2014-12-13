@@ -1,7 +1,7 @@
 <?php include('core/init.php');
 
 // create db object
-$db = new Database();
+$db = new Database;
 
 // run query
 $db->query("SELECT * FROM contacts");
@@ -41,8 +41,8 @@ $contacts = $db->resultset();?>
         			<td><?php echo $contact->contact_group; ?></td>
         			<td>
         				<ul class="button-group radius">
-        					<li><a href="#" class="button tiny" data-reveal-id="myModal">Edit</a></li>
-        					<li><a href="#" class="button tiny [secondary alert success]">Delete</a></li>
+        					<li><a href="#" class="button tiny" data-reveal-id="addModal">Edit</a></li>
+        					<li><a href="#" class="button tiny alert">Delete</a></li>
         				</ul>
         			</td>
         		</tr>

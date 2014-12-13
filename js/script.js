@@ -4,6 +4,20 @@ $(document).ready(function(){
 
 	// show contacts on page load
 	showContacts();
+
+	// add contact
+	$(document).on('submit', '#addContact', function(){
+		// show loader image
+		$('#loaderImage').show();
+
+		// post data from form
+		$.post('add_contact.php', $(this).serialize()).done(function(data){
+			console.log(data);
+			$('#addModal').foundation('reveal','close');
+			showContacts();
+		});
+		return false;
+	});
 });
 
 function showContacts(){
