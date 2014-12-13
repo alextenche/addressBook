@@ -16,28 +16,28 @@
       </div>
 
       <div class="large-6 columns">
-        <a class="add-btn button right small" data-reveal-id="myModal" href="#">Add Contact</a>
+        <a class="add-btn button right small" data-reveal-id="myModal" href="#">adaugă un contact</a>
         <div id="myModal" class="reveal-modal" data-reveal>
-          <h2>Add Contact</h2>
+          <h2>ad Contact</h2>
           <form>
 
             <div class="row">
               <div class="large-6 columns">
-                <label>First Name<input type="text" placeholder="Enter First Name" /></label>
+                <label>prenume<input type="text" placeholder="adaugă prenumele" /></label>
               </div>
 
               <div class="large-6 columns">
-                <label>Last Name<input type="text" placeholder="Enter Last Name" /></label>
+                <label>nume<input type="text" placeholder="adaugă numele" /></label>
               </div>
             </div>
 
             <div class="row">
               <div class="large-4 columns">
-                <label>Email<input type="email" placeholder="Enter Email Address" /></label>
+                <label>email<input type="email" placeholder="adaugă adresa de email" /></label>
               </div>
 
               <div class="large-4 columns">
-                <label>Phone Number<input type="text" placeholder="Enter Phone Number" /></label>
+                <label>telefon<input type="text" placeholder="adaugă telefonul" /></label>
               </div>
 
               <div class="large-4 columns">
@@ -53,7 +53,7 @@
 
             <div class="row">
               <div class="large-6 columns">
-                <label>Address 1<input type="text" placeholder="Introduceti Adresa 1" /></label>
+                <label>prima adresă<input type="text" placeholder="adăugați prima adresă" /></label>
               </div>
 
               <div class="large-6 columns">
@@ -153,6 +153,7 @@
 
     
     <script src="js/vendor/jquery.js"></script>
+	<script src="js/script.js"></script>
     <script src="js/foundation.min.js"></script>
     <script>
       $(document).foundation();
