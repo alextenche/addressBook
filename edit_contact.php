@@ -3,7 +3,7 @@
 $db = new Database;
 
 // run query
-$db->query("UPDATE contacts  SET
+$db->query("UPDATE `contacts`  SET 
 						first_name = :first_name, 
 						last_name = :last_name,
 						email = :email, 
@@ -29,6 +29,7 @@ $db->bind(':state', $_POST['state']);
 $db->bind(':zipcode', $_POST['zipcode']);
 $db->bind(':contact_group', $_POST['contact_group']);
 $db->bind(':notes', $_POST['notes']);
+$db->bind(':id', $_POST['id']);
 
 if($db->execute()){
 	echo "Contact was updated";

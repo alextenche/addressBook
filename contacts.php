@@ -121,14 +121,15 @@ $contacts = $db->resultset();?>
 										 <input name="submit" type="submit" class="add-btn button right small" value="Submit">
 										 <a class="close-reveal-modal" href="">&#215;</a>
 									  </form>
-								
-								
-								
-								
-								
+			
 								</div>
 							</li>
-        					<li><a href="#" class="button tiny alert">Delete</a></li>
+        					<li>
+								<form id="deleteContact" action="#" method="post">
+									<input name="id" type="hidden" value="<?php echo $contact->id; ?>">
+									<input type="submit" class="delete-btn button tiny secondary alert" value="Delete" />
+								</form>
+							</li>
         				</ul>
         			</td>
         		</tr>
