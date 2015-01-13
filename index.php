@@ -1,16 +1,17 @@
 <?php include('core/init.php');?>
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Alexandru Tenche">
     <title>addressBook | Welcome</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/custom.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
-
+	<br><br>
     <div class="row">
       <div class="large-6 columns">
         <h1>addressBook</h1>
