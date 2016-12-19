@@ -1,15 +1,9 @@
-<?php 
-// include config
-require_once('config/config.php');
+<?php
 
-// helper files
-require_once('helpers/system_helper.php');
+require_once(__DIR__ . '../config/config.php');
+require_once(__DIR__ . '../helpers/system_helper.php');
 
-
-//require_once('libraries/Database.php');
-
-
-// autoload
-function __autoload($class_name){
-	require_once('libraries/'.$class_name.'.php');
+function __autoload($className)
+{
+    require_once('libraries/' . $className . '.php');
 }
