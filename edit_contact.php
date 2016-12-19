@@ -1,23 +1,24 @@
-<?php include('core/init.php');
+<?php
+include(__DIR__ . '/core/init.php');
 
 $db = new Database;
 
-// run query
-$db->query("UPDATE `contacts`  SET 
-						first_name = :first_name, 
-						last_name = :last_name,
-						email = :email, 
-						phone = :phone, 
-						address1 = :address1, 
-						address2 = :address2, 
-						city = :city, 
-						state = :state, 
-						zipcode = :zipcode, 
-						contact_group = :contact_group,
-						notes = :notes
-						WHERE id = :id");
+$query = "UPDATE `contacts`  SET 
+			first_name = :first_name, 
+			last_name = :last_name,
+			email = :email, 
+			phone = :phone, 
+			address1 = :address1, 
+			address2 = :address2, 
+			city = :city, 
+			state = :state, 
+			zipcode = :zipcode, 
+			contact_group = :contact_group,
+			notes = :notes
+		  WHERE id = :id";
 
-// bind values
+$db->query($query);
+
 $db->bind(':first_name', $_POST['first_name']);
 $db->bind(':last_name', $_POST['last_name']);
 $db->bind(':email', $_POST['email']);
@@ -31,9 +32,8 @@ $db->bind(':contact_group', $_POST['contact_group']);
 $db->bind(':notes', $_POST['notes']);
 $db->bind(':id', $_POST['id']);
 
-if($db->execute()){
-	echo "Contact was updated";
+if ($db->execute()) {
+    echo "Contact was updated";
 } else {
-	echo "Could not update contact";
+    echo "Could not update contact";
 }
-?>
