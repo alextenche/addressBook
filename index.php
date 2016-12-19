@@ -80,8 +80,7 @@
                     </div>
                     <div class="large-4 columns">
                         <label> state
-                            <select name="state/county/land">
-                                <option> select state/county/land </option>
+                            <select name="state">
                                 <?php foreach ($states as $stateCode => $stateName) : ?>
                                     <option value="<?php echo $stateCode; ?>"><?php echo $stateName; ?></option>
                                 <?php endforeach; ?>
