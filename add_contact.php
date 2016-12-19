@@ -1,10 +1,14 @@
-<?php include('core/init.php');
+<?php
+include(__DIR__ . '/core/init.php');
 
 $db = new Database;
 
-// run query
-$db->query("INSERT INTO contacts (first_name, last_name, email, phone, address1, address2, city, state, zipcode, contact_group, notes)
-				VALUES(:first_name, :last_name, :email, :phone, :address1, :address2, :city, :state, :zipcode, :contact_group, :notes)");
+$query = "INSERT INTO contacts 
+          (first_name, last_name, email, phone, address1, address2, city, state, zipcode, contact_group, notes)
+		  VALUES
+		  (:first_name,:last_name,:email,:phone,:address1,:address2, :city, :state, :zipcode, :contact_group, :notes)";
+
+$db->query($query);
 
 // bind values
 $db->bind(':first_name', $_POST['first_name']);
@@ -19,9 +23,8 @@ $db->bind(':zipcode', $_POST['zipcode']);
 $db->bind(':contact_group', $_POST['contact_group']);
 $db->bind(':notes', $_POST['notes']);
 
-if($db->execute()){
-	echo "Contact was added";
+if ($db->execute()) {
+    echo "Contact was added";
 } else {
-	echo "Could not add contact";
+    echo "Could not add contact";
 }
-?>
