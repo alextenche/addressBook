@@ -1,4 +1,5 @@
-<?php require_once(__DIR__ .'/core/init.php'); ?>
+<?php
+require_once(__DIR__ .'/core/init.php'); ?>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">

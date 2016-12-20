@@ -16,7 +16,6 @@ $query = "UPDATE `contacts`  SET
 			contact_group = :contact_group,
 			notes = :notes
 		  WHERE id = :id";
-
 $db->query($query);
 
 $db->bind(':first_name', $_POST['first_name']);
@@ -33,7 +32,7 @@ $db->bind(':notes', $_POST['notes']);
 $db->bind(':id', $_POST['id']);
 
 if ($db->execute()) {
-    echo "Contact was updated";
+    echo "contact was updated";
 } else {
-    echo "Could not update contact";
+    echo "could not update contact";
 }

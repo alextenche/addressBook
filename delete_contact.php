@@ -9,7 +9,7 @@ $db->bind(':id', $_POST['id']);
 
 if ($db->execute()) {
     echo $_POST['id'];
-    echo "Contact was deleted";
+    echo "contact was deleted";
 } else {
-    echo "Could not delete contact";
+    echo "could not delete contact";
 }
