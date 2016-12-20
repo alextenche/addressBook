@@ -3,10 +3,7 @@ include(__DIR__ . '/core/init.php');
 
 $db = new Database;
 
-// run query
 $db->query("SELECT * FROM contacts");
-
-// assign result set
 $contacts = $db->resultset(); ?>
 
 <div class="row">
@@ -77,7 +74,7 @@ $contacts = $db->resultset(); ?>
                                                 </label>
                                             </div>
                                             <div class="large-4 columns">
-                                                <label>Contact Group
+                                                <label> contact group
                                                     <select name="contact_group">
                                                         <option value="family"
                                                             <?php if ($contact->contact_group == 'family') :

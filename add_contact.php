@@ -24,7 +24,7 @@ $db->bind(':contact_group', $_POST['contact_group']);
 $db->bind(':notes', $_POST['notes']);
 
 if ($db->execute()) {
-    echo "Contact was added";
+    echo "contact was added";
 } else {
-    echo "Could not add contact";
+    echo "could not add contact";
 }

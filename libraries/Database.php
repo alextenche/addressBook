@@ -14,16 +14,13 @@ class Database
 
     public function __construct()
     {
-        // set DSN
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
-        // set options
-        $options = array(PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-        // create a new PDO instance
+
+        $options = array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
-        } // catch any errors
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
     }
