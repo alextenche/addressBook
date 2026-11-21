@@ -1,0 +1,49 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use App\Database\Migrator;
+
+/**
+ * Usage: php bin/migrate [--seed] [--fresh]
+ *   --seed   load demo contacts if the table is empty
+ *   --fresh  drop all tables first (refused unless APP_ENV is development or testing)
+ */
+$createApp = require dirname(__DIR__) . '/bootstrap/app.php';
+$container = $createApp()->getContainer() ?? throw new RuntimeException('No container.');
+$migrator = $container->get(Migrator::class);
+$args = array_slice($argv, 1);
+
+// The database container may still be starting; retry the first connection briefly.
+for ($attempt = 1; ; $attempt++) {
+    try {
+        $container->get(PDO::class);
+        break;
+    } catch (PDOException $e) {
+        if ($attempt >= 30) {
+            fwrite(STDERR, "Could not connect to the database: {$e->getMessage()}\n");
+            exit(1);
+        }
+        sleep(1);
+    }
+}
+
+if (in_array('--fresh', $args, true)) {
+    /** @var array{env: string} $settings */
+    $settings = $container->get('settings');
+    if (!in_array($settings['env'], ['development', 'testing'], true)) {
+        fwrite(STDERR, "Refusing --fresh outside development/testing.\n");
+        exit(1);
+    }
+    $migrator->dropAll();
+    echo "Dropped all tables.\n";
+}
+
+foreach ($migrator->migrate() as $name) {
+    echo "Migrated: {$name}\n";
+}
+if (in_array('--seed', $args, true)) {
+    echo $migrator->seed() ? "Seeded demo contacts.\n" : "Contacts table not empty, skipped seeding.\n";
+}
+echo "Database is up to date.\n";

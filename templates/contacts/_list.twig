@@ -1,0 +1,57 @@
+<p class="count">{{ contacts|length }} {{ contacts|length == 1 ? 'contact' : 'contacts' }}</p>
+
+{% if contacts is empty %}
+  <div class="empty">
+    {% if query or group %}
+      <p>No contacts match your filter.</p>
+      <a class="button" href="/">Clear filter</a>
+    {% else %}
+      <p>Your address book is empty.</p>
+      <a class="button button--primary" href="/contacts/new" data-action="add">Add your first contact</a>
+    {% endif %}
+  </div>
+{% else %}
+  <table class="contacts">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Address</th>
+        <th scope="col"><span class="visually-hidden">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in contacts %}
+        <tr data-contact-id="{{ c.id }}">
+          <td class="contacts__name">
+            <span class="avatar avatar--{{ c.group.value }}" aria-hidden="true">{{ c.initials }}</span>
+            <span>
+              <strong>{{ c.fullName }}</strong>
+              <span class="badge badge--{{ c.group.value }}">{{ c.group.label }}</span>
+              {% if c.notes %}<small class="notes">{{ c.notes }}</small>{% endif %}
+            </span>
+          </td>
+          <td data-label="Contact">
+            {% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a><br>{% endif %}
+            {% if c.phone %}<a href="tel:{{ c.phone|replace({' ': ''}) }}">{{ c.phone }}</a>{% endif %}
+            {% if not c.email and not c.phone %}<span class="muted">—</span>{% endif %}
+          </td>
+          <td data-label="Address">
+            {% if c.addressLine1 %}{{ c.addressLine1 }}<br>{% endif %}
+            {% if c.addressLine2 %}{{ c.addressLine2 }}<br>{% endif %}
+            {% if c.locality %}{{ c.locality }}{% endif %}
+            {% if not c.addressLine1 and not c.locality %}<span class="muted">—</span>{% endif %}
+          </td>
+          <td class="contacts__actions">
+            <a class="button button--small" href="/contacts/{{ c.id }}/edit" data-action="edit" data-id="{{ c.id }}">Edit</a>
+            <form method="post" action="/contacts/{{ c.id }}" data-action="delete" data-name="{{ c.fullName }}">
+              <input type="hidden" name="_METHOD" value="DELETE">
+              <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+              <button class="button button--small button--danger" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}

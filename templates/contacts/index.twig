@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block header_actions %}
+  <a class="button button--primary" href="/contacts/new" data-action="add">
+    <svg aria-hidden="true" viewBox="0 0 20 20" width="18" height="18"><path fill="currentColor" d="M10 4a1 1 0 0 1 1 1v4h4a1 1 0 1 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V5a1 1 0 0 1 1-1Z"/></svg>
+    Add contact
+  </a>
+{% endblock %}
+
+{% block content %}
+  {% if flash %}
+    <p class="notice" role="status">{{ flash }}</p>
+  {% endif %}
+
+  <form class="toolbar" method="get" action="/" role="search" data-filter>
+    <label class="search">
+      <span class="visually-hidden">Search contacts</span>
+      <svg aria-hidden="true" viewBox="0 0 20 20" width="18" height="18"><path fill="currentColor" d="M8.5 3a5.5 5.5 0 0 1 4.38 8.83l3.65 3.64a1 1 0 0 1-1.42 1.42l-3.64-3.65A5.5 5.5 0 1 1 8.5 3Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></svg>
+      <input type="search" name="q" value="{{ query }}" placeholder="Search by name, email, phone or city" autocomplete="off">
+    </label>
+    <fieldset class="chips">
+      <legend class="visually-hidden">Group</legend>
+      <label class="chip"><input type="radio" name="group" value="" {{ group is null ? 'checked' }}><span>All</span></label>
+      {% for g in groups %}
+        <label class="chip chip--{{ g.value }}"><input type="radio" name="group" value="{{ g.value }}" {{ group == g.value ? 'checked' }}><span>{{ g.label }}</span></label>
+      {% endfor %}
+    </fieldset>
+    <noscript><button class="button" type="submit">Filter</button></noscript>
+  </form>
+
+  <section id="contact-list" aria-live="polite">
+    {% include 'contacts/_list.twig' %}
+  </section>
+
+  <dialog class="dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
+    <form method="dialog" class="dialog__close-form">
+      <button class="icon-button" aria-label="Close">&times;</button>
+    </form>
+    <h2 id="contact-dialog-title">Add contact</h2>
+    {% include 'contacts/_form.twig' with { contact: null, errors: {} } %}
+  </dialog>
+{% endblock %}

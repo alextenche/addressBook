@@ -1,0 +1,13 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{ contact ? 'Edit ' ~ contact.fullName : 'Add contact' }} · Address Book{% endblock %}
+
+{% block content %}
+  <section class="card page-form">
+    <h1>{{ contact ? 'Edit ' ~ contact.fullName : 'Add contact' }}</h1>
+    {% if errors is not empty %}
+      <p class="notice notice--error" role="alert">Please fix the highlighted fields.</p>
+    {% endif %}
+    {% include 'contacts/_form.twig' %}
+  </section>
+{% endblock %}
