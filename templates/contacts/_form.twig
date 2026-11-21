@@ -1,0 +1,55 @@
+{% macro field(name, label, form, errors, attrs = {}) %}
+  <div class="field{{ errors[name] is defined ? ' field--invalid' }}" data-field="{{ name }}">
+    <label for="f-{{ name }}">{{ label }}{% if attrs.required is defined %} <span class="required" aria-hidden="true">*</span>{% endif %}</label>
+    {% if attrs.multiline is defined %}
+      <textarea id="f-{{ name }}" name="{{ name }}" rows="3" maxlength="{{ attrs.maxlength }}" aria-describedby="e-{{ name }}">{{ form[name] }}</textarea>
+    {% else %}
+      <input id="f-{{ name }}" name="{{ name }}" type="{{ attrs.type ?? 'text' }}" value="{{ form[name] }}"
+             maxlength="{{ attrs.maxlength }}" autocomplete="{{ attrs.autocomplete ?? 'off' }}"
+             {{ attrs.required is defined ? 'required' }} aria-describedby="e-{{ name }}">
+    {% endif %}
+    <p class="field__error" id="e-{{ name }}">{{ errors[name] ?? '' }}</p>
+  </div>
+{% endmacro %}
+{% import _self as f %}
+
+<form class="contact-form" method="post" action="{{ contact ? '/contacts/' ~ contact.id : '/contacts' }}" novalidate data-contact-form>
+  <input type="hidden" name="_METHOD" value="{{ contact ? 'PUT' : 'POST' }}">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+
+  <div class="grid grid--2">
+    {{ f.field('first_name', 'First name', form, errors, { required: true, maxlength: 100, autocomplete: 'given-name' }) }}
+    {{ f.field('last_name', 'Last name', form, errors, { required: true, maxlength: 100, autocomplete: 'family-name' }) }}
+    {{ f.field('email', 'Email', form, errors, { type: 'email', maxlength: 254, autocomplete: 'email' }) }}
+    {{ f.field('phone', 'Phone', form, errors, { type: 'tel', maxlength: 50, autocomplete: 'tel' }) }}
+  </div>
+
+  <fieldset class="field{{ errors.contact_group is defined ? ' field--invalid' }}" data-field="contact_group">
+    <legend>Group</legend>
+    <div class="chips">
+      {% for g in groups %}
+        <label class="chip chip--{{ g.value }}">
+          <input type="radio" name="contact_group" value="{{ g.value }}" {{ form.contact_group == g.value ? 'checked' }}>
+          <span>{{ g.label }}</span>
+        </label>
+      {% endfor %}
+    </div>
+    <p class="field__error">{{ errors.contact_group ?? '' }}</p>
+  </fieldset>
+
+  <div class="grid grid--2">
+    {{ f.field('address_line1', 'Address', form, errors, { maxlength: 150, autocomplete: 'address-line1' }) }}
+    {{ f.field('address_line2', 'Address line 2', form, errors, { maxlength: 150, autocomplete: 'address-line2' }) }}
+  </div>
+  <div class="grid grid--3">
+    {{ f.field('city', 'City', form, errors, { maxlength: 100, autocomplete: 'address-level2' }) }}
+    {{ f.field('region', 'Region / state / county', form, errors, { maxlength: 100, autocomplete: 'address-level1' }) }}
+    {{ f.field('postal_code', 'Postal code', form, errors, { maxlength: 20, autocomplete: 'postal-code' }) }}
+  </div>
+  {{ f.field('notes', 'Notes', form, errors, { multiline: true, maxlength: 2000 }) }}
+
+  <div class="form-actions">
+    <a class="button" href="/" data-action="cancel">Cancel</a>
+    <button class="button button--primary" type="submit">Save contact</button>
+  </div>
+</form>
