@@ -19,7 +19,7 @@ jobs:
           php-version: '8.3'
           coverage: none
       - run: composer validate --strict
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
       - run: vendor/bin/php-cs-fixer fix --dry-run --diff
       - run: vendor/bin/phpstan analyse --memory-limit=512M --no-progress
 
@@ -52,7 +52,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: pdo_mysql
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
       - run: vendor/bin/pest
 
   docker:
